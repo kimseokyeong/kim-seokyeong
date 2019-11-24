@@ -1,5 +1,5 @@
 # kim-seokyeong
-# 카카오 11/8 ~ 8/27 일별시세변동
+# 카카오 11/8 ~ 5/31 일별시세변동
 
 install.packages("rvest")
 
@@ -12,7 +12,7 @@ library(ggplot2)
 
 url = "https://finance.naver.com/item/sise_day.nhn?code=035720&page="
 
-page = 2:6
+page = 2:12
 
 pages = paste0(url , page , sep = '')
 
@@ -51,4 +51,5 @@ result <- lapply(pages, extra)
 final = do.call(rbind, result)
 
 
-ggplot(data = final , aes(x=날짜 , y=종가)) + geom_point() 
+ggplot(data = final , aes(x=날짜 , y=종가)) + geom_point() + theme(axis.text.x = element_text(angle = 90 , hjust = 1)) + theme(axis.text.y = element_text(angle = 45 , hjust = 1))
+
